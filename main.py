@@ -22,7 +22,8 @@ async def handle_request(request: Request):
         'order.add - context: ongoing-order': add_order,
         'order.remove - context: ongoing-order': remove_from_order,
         'order.complete- context: ongoing-order': complete_order,
-        'track.order - context:ongoing-tracking': track_order
+        'track.order - context:ongoing-tracking': track_order,
+        'order.cancel- context:ongoing-order':cancel_order
     }
     return intent_handler_dict[intent](parameters,session_id)
 
@@ -143,3 +144,10 @@ def save_to_db(order: dict):
 
     return next_order_id
 
+def cancel_order(parameters: dict, session_id: str):
+    order_id = parameters.get('order_id')
+    # Call dp_helper.remover_order and capture the response
+    response = dp_helper.remover_order(order_id)
+    print("Response from dp_helper:", response)
+    # Return the response from dp_helper (which contains the fulfillment text)
+    return response
