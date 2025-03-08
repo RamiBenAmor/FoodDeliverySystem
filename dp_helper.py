@@ -115,3 +115,24 @@ def get_total_order_price(order_id):
     cursor.close()
 
     return result
+
+def remover_order(order_id):
+    cursor = cnx.cursor()
+    try:
+        # Use parameterized query to avoid SQL injection
+        query = "DELETE FROM orders WHERE order_id = %s"
+        cursor.execute(query, (order_id,))  # Pass the order_id as a tuple
+        cnx.commit()  # Ensure the transaction is committed
+        # If no rows were deleted, the order doesn't exist in the database
+        if cursor.rowcount == 0:
+            return {"fulfillmentText": f"Error: order_id {order_id} does not exist"}
+
+        return {"fulfillmentText": f"Your order {order_id} is cancelled"}
+
+    except mysql.connector.Error as err:
+        # Handle any database-related errors
+        print(f"Database error: {err}")
+        return {"fulfillmentText": "Error: Something went wrong with the database"}
+
+    finally:
+        cursor.close()  # Always close the cursor after use
