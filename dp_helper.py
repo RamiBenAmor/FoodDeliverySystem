@@ -3,8 +3,8 @@ import mysql.connector
 cnx = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="gearsofwar3",
-    database="pandeyji_eatery"
+    password="root",
+    database="FoodDelivery"
 )
 def insert_order_item(food_item, quantity, order_id):
     try:
