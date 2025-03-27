@@ -1,4 +1,4 @@
-# FoodDeliverySystem (Tech Stack Dialogflow: For Natural Language Processing (NLP) and intent management)
+# FoodDeliverySystem 
 This project is an AI-powered chatbot designed for a food delivery service. It utilizes Natural Language Processing (NLP) with Dialogflow to enable users to easily place, modify, confirm, cancel, and track their food orders. The chatbot also supports promo codes for discounts and integrates with a MySQL database for storing user data and order history.
 
 Features
